@@ -11,11 +11,10 @@ class hbridge {
     void stop();
     void vitessep();
     void vitessem();
-    void avancer();
-    void reculer();
-    void gauche();
-    void droite();
-    
+    void foward();
+    void backward();
+    void left();
+    void right();
 };
 
 #endif
