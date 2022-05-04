@@ -18,6 +18,7 @@
 #include "hbridge.h"
 #include "led_indicator.h"
 #include "buzzer_indicator.h"
+#include "remote.h"
 
 //On crée un tableau contenant l'ensemble des pins relatifs aux moteurs
 const int E1=3, M1=14, E2=10, M2=15, E3=11, M3=16, E4=9, M4=17; 
@@ -32,10 +33,14 @@ buzzerindicator bz(23, 200);
 //Objet hb de la classe hbridge
 hbridge hb(pins, 200);
 
+//Software Serial
+SoftwareSerial softSerial(50, 51);
 
 void setup() {
-  Serial.begin(9600);
+  softSerial.begin(9600);
   ledG.still();
+
+  RemoteXY_Init ();
 }
 
 
