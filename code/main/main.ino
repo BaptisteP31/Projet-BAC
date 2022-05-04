@@ -33,11 +33,9 @@ buzzerindicator bz(23, 200);
 //Objet hb de la classe hbridge
 hbridge hb(pins, 200);
 
-//Software Serial
-SoftwareSerial softSerial(50, 51);
 
 void setup() {
-  softSerial.begin(9600);
+  Serial.begin(9600);
   ledG.still();
 
   RemoteXY_Init ();
@@ -46,6 +44,9 @@ void setup() {
 
 void loop() {
 
+  RemoteXY_Handler ();
+
+/*
   //On lit l'entrée serial et on la sauvegarde dans input
   char input = Serial.read();
 
@@ -102,5 +103,10 @@ void loop() {
     default:
       break;
       
+    }
+    */
+
+    if(RemoteXY.haut==true) {
+      Serial.println("En avant toute!");
     }
 }

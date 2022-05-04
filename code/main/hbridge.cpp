@@ -20,10 +20,8 @@
 #include "led_indicator.h"
 
 #include <Arduino.h>
-#include <SoftwareSerial.h>
 
 buzzerindicator _bz(23, 200);
-SoftwareSerial _softSerial(50,51);
 
 
 //constructeur de la classe
@@ -44,8 +42,8 @@ hbridge::hbridge(int pins[], int speed) {
     }
     
     //liste des pins print dans la console
-    _softSerial.print("Pin : ");
-    _softSerial.println(_pins[i]);
+    Serial.print("Pin : ");
+    Serial.println(_pins[i]);
   
   }
   
@@ -86,12 +84,12 @@ void hbridge::vitessep() {
   //Si la vitesse est inférieure à 250
   if(_speed < 250) {
      _speed += 10;
-     _softSerial.print("Vitesse : ");
-     _softSerial.println(_speed);
+     Serial.print("Vitesse : ");
+     Serial.println(_speed);
      _bz.validated();
      
   } else {
-     _softSerial.println("Vitesse trop haute!");
+     Serial.println("Vitesse trop haute!");
      _bz.error();
   }
   
@@ -104,12 +102,12 @@ void hbridge::vitessem() {
   //Si la vitesse est supérieure à 80 (sinon coupure moteur)
    if(_speed > 100) {
      _speed -= 10;
-     _softSerial.print("Vitesse : ");
-     _softSerial.println(_speed);
+     Serial.print("Vitesse : ");
+     Serial.println(_speed);
      _bz.validated();
 
   } else {
-     _softSerial.println("Vitesse trop basse !");
+     Serial.println("Vitesse trop basse !");
      _bz.error();
   }
   
