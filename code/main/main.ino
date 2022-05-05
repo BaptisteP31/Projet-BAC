@@ -46,67 +46,72 @@ void loop() {
 
   RemoteXY_Handler ();
 
-/*
-  //On lit l'entrée serial et on la sauvegarde dans input
-  char input = Serial.read();
-
-  //On agit en fonction de l'input
-    switch(input) {
-
-      //indication led rouge, indication buzzer, activation moteurs
-    case '1': 
-      ledR.blink();
-      bz.validated();
-      hb.start();
-      Serial.println("Avancer!");
-      break;
+    if (RemoteXY.haut) {
       
-    //indication led rouge, indication buzzer, arrêt moteurs
-    case '0':
+      //Petit pas en avant
       ledR.blink();
       bz.validated();
+      hb.step_foward();
+      Serial.println("En avant!");
+      
+    } else if (RemoteXY.bas) {
+      
+      //Petit pas en arrière
+      ledR.blink();
+      bz.validated();
+      hb.step_backward();
+      Serial.println("En arrière!");
+
+      
+    } else if (RemoteXY.droite) {
+
+      //à droite
+      hb.right();
+      ledR.blink();
+      Serial.println("Droite !");
+      delay(200);
       hb.stop();
-      Serial.println("Stop!");
-      break;
       
-    //augmentation de vitesse
-    case '+':
-      hb.vitessep();
-      ledR.blink();
-      break;
+    } else if (RemoteXY.gauche) {
 
-    //réduction de vitesse
-    case '-':
-      hb.vitessem();
-      ledR.blink();
-      break;
-
-    //tourne à gauche
-    case 'l': //L à ne pas confondre avec 1
+      //à gauche
       hb.left();
       ledR.blink();
       bz.validated();
       Serial.println("Gauche !");
       delay(200);
       hb.stop();
-      break;
-
-    //tourne à droite
-    case 'r':
-      hb.right();
-      ledR.blink();
-      Serial.println("Droite !");
-      delay(200);
-      hb.stop();
-      break;
-    
-    default:
-      break;
       
-    }
-    */
+    } else if (RemoteXY.droite) {
+      
+      
+    } else if (RemoteXY.switch_1) {
 
-    if(RemoteXY.haut==true) {
-      Serial.println("En avant toute!");
+      //Activation des moteurs
+      ledR.blink();
+      bz.validated();
+      hb.start();
+      Serial.println("Avancer!");
+
+    } else if (RemoteXY.switch_1 == false) {
+
+      //arrêt des moteurs
+      ledR.blink();
+      bz.validated();
+      hb.stop();
+      Serial.println("Stop!");
+      
+    } else if (RemoteXY.vitesse_m) {
+
+      //Vitesse -10
+      hb.vitessep();
+      ledR.blink();
+      
+    } else if (RemoteXY.vitesse_p) {
+
+      //Vitesse +10
+      hb.vitessem();
+      ledR.blink();
+      
     }
 }

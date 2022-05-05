@@ -32,6 +32,8 @@ class hbridge {
     void backward();
     void left();
     void right();
+    void step_foward();
+    void step_backward();
 };
 
 #endif

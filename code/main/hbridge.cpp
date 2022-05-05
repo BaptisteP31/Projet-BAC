@@ -147,3 +147,19 @@ void hbridge::right() {
   digitalWrite(_pins[5], HIGH);
   digitalWrite(_pins[7], LOW);
 }
+
+//Petit pas en avant
+void hbridge::step_foward() {
+  hbridge::foward();
+  hbridge::start();
+  delay(200);
+  hbridge::stop();
+}
+
+//Petit pas en arrière
+void hbridge::step_backward() {
+  hbridge::backward();
+  hbridge::start();
+  delay(200);
+  hbridge::stop();
+}
