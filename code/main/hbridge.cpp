@@ -1,27 +1,30 @@
 /* 
- * This file is part of the Projet-BAC (https://github.com/BaptisteP31/Projet-BAC).
- * Copyright (c) 2022 Paqueriaud Baptiste.
- * 
- * This program is free software: you can redistribute it and/or modify  
- * it under the terms of the GNU General Public License as published by  
- * the Free Software Foundation, version 3.
- *
- * This program is distributed in the hope that it will be useful, but 
- * WITHOUT ANY WARRANTY; without even the implied warranty of 
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU 
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License 
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
++-----------------------------------------------------------------------------------+
+| * This file is part of the Projet-BAC (https://github.com/BaptisteP31/Projet-BAC).|
+| * Copyright (c) 2022 Paqueriaud Baptiste.                                         |
+| *                                                                                 |
+| * This program is free software: you can redistribute it and/or modify            |
+| * it under the terms of the GNU General Public License as published by            |
+| * the Free Software Foundation, version 3.                                        |
+| *                                                                                 |
+| * This program is distributed in the hope that it will be useful, but             |
+| * WITHOUT ANY WARRANTY; without even the implied warranty of                      |
+| * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU                |
+| * General Public License for more details.                                        |
+| *                                                                                 |
+| * You should have received a copy of the GNU General Public License               |
+| * along with this program. If not, see <http://www.gnu.org/licenses/>.            |
++-----------------------------------------------------------------------------------+
+                                                                                     
  */
 
 #include "hbridge.h"
 #include "buzzer_indicator.h"
-#include "led_indicator.h"
 
 #include <Arduino.h>
 
 buzzerindicator _bz(23, 200);
+
 
 //constructeur de la classe
 hbridge::hbridge(int pins[], int speed) {
@@ -42,8 +45,8 @@ hbridge::hbridge(int pins[], int speed) {
     }
     
     //liste des pins print dans la console
-    Serial.print("Pin : ");
-    Serial.println(_pins[i]);
+    //Serial.print("Pin : ");
+    //Serial.println(_pins[i]);
   
   }
   
@@ -84,8 +87,6 @@ void hbridge::vitessep() {
   //Si la vitesse est inférieure à 250
   if(_speed < 250) {
      _speed += 10;
-     Serial.print("Vitesse : ");
-     Serial.println(_speed);
      _bz.validated();
      
   } else {
@@ -102,8 +103,6 @@ void hbridge::vitessem() {
   //Si la vitesse est supérieure à 80 (sinon coupure moteur)
    if(_speed > 100) {
      _speed -= 10;
-     Serial.print("Vitesse : ");
-     Serial.println(_speed);
      _bz.validated();
 
   } else {
@@ -138,6 +137,10 @@ void hbridge::left() {
   digitalWrite(_pins[3], HIGH);
   digitalWrite(_pins[5], LOW);
   digitalWrite(_pins[7], HIGH);
+  hbridge::start();
+  delay(200);
+  hbridge::stop();
+
 }
 
 //configuration moteurs pour tourner à droite
@@ -146,4 +149,23 @@ void hbridge::right() {
   digitalWrite(_pins[3], LOW);
   digitalWrite(_pins[5], HIGH);
   digitalWrite(_pins[7], LOW);
+  hbridge::start();
+  delay(200);
+  hbridge::stop();
+}
+
+//Petit pas en avant
+void hbridge::step_foward() {
+  hbridge::foward();
+  hbridge::start();
+  delay(200);
+  hbridge::stop();
+}
+
+//Petit pas en arrière
+void hbridge::step_backward() {
+  hbridge::backward();
+  hbridge::start();
+  delay(200);
+  hbridge::stop();
 }
