@@ -31,12 +31,9 @@ ledindicator::ledindicator(int pin, int delay) {
 
 //clignotement led
 void ledindicator::blink() {
-  for(int i = 0; i < 2; i++) {
     digitalWrite(_pin, HIGH);
     delay(_delay);
     digitalWrite(_pin, LOW);
-    delay(_delay);
-  }
 }
 
 //led alumée

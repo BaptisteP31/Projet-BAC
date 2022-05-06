@@ -48,68 +48,69 @@ void loop() {
 
   RemoteXY_Handler ();
 
-    if (RemoteXY.haut==1) {
+    if (RemoteXY.foward) {
       
       //Petit pas en avant
-      ledR.blink();
-      bz.validated();
       hb.step_foward();
-      analogWrite(3, 100);
-      Serial.println("En avant!");
+      ledR.blink();
       
-    } else if (RemoteXY.bas) {
+    } else if (RemoteXY.backward) {
       
       //Petit pas en arrière
-      ledR.blink();
-      bz.validated();
       hb.step_backward();
-      Serial.println("En arrière!");
+      ledR.blink();
 
       
-    } else if (RemoteXY.droite) {
+    } else if (RemoteXY.right) {
 
       //à droite
       hb.right();
       ledR.blink();
-      Serial.println("Droite !");
       
-    } else if (RemoteXY.gauche) {
+    } else if (RemoteXY.left) {
 
       //à gauche
       hb.left();
       ledR.blink();
-      bz.validated();
-      Serial.println("Gauche !");
       
     } else if (RemoteXY.start) {
 
       //Activation des moteurs
-      ledR.blink();
-      bz.validated();
       hb.start();
-      Serial.println("Avancer!");
+      ledR.blink();
 
     } else if (RemoteXY.stop) {
 
       //arrêt des moteurs
-      ledR.blink();
-      bz.validated();
       hb.stop();
-      Serial.println("Stop!");
+      ledR.blink();
       
-    } else if (RemoteXY.vitessem==1) {
+    } else if (RemoteXY.vitessem) {
 
       //Vitesse -10
       hb.vitessem();
-      Serial.println("Vitesse-");
       ledR.blink();
       
     } else if (RemoteXY.vitessep) {
 
       //Vitesse +10
       hb.vitessep();
-      Serial.println("Vitesse+");
+      ledR.blink();
+
+      
+    } else if (RemoteXY.step_foward) {
+
+      hb.step_foward();
       ledR.blink();
       
-    } 
+      
+    } else if (RemoteXY.step_backward) {
+
+      hb.step_backward();
+      ledR.blink();
+      
+    }
+
+    
+    
 }

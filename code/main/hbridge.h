@@ -24,8 +24,8 @@
 class hbridge {
 	private:
 		int _pins[8];
-    int _speed;
 	public:
+    int _speed;
 		hbridge(int pins[], int speed);
     void start();
     void stop();

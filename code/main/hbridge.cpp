@@ -20,7 +20,6 @@
 
 #include "hbridge.h"
 #include "buzzer_indicator.h"
-#include "led_indicator.h"
 
 #include <Arduino.h>
 
@@ -87,8 +86,6 @@ void hbridge::vitessep() {
   //Si la vitesse est inférieure à 250
   if(_speed < 250) {
      _speed += 10;
-     //Serial.print("Vitesse : ");
-     //Serial.println(_speed);
      _bz.validated();
      
   } else {
@@ -105,8 +102,6 @@ void hbridge::vitessem() {
   //Si la vitesse est supérieure à 80 (sinon coupure moteur)
    if(_speed > 100) {
      _speed -= 10;
-     //Serial.print("Vitesse : ");
-     //Serial.println(_speed);
      _bz.validated();
 
   } else {
@@ -141,10 +136,10 @@ void hbridge::left() {
   digitalWrite(_pins[3], HIGH);
   digitalWrite(_pins[5], LOW);
   digitalWrite(_pins[7], HIGH);
-
-  delay(200);
-
   hbridge::start();
+  delay(200);
+  hbridge::stop();
+
 }
 
 //configuration moteurs pour tourner à droite
@@ -153,6 +148,9 @@ void hbridge::right() {
   digitalWrite(_pins[3], LOW);
   digitalWrite(_pins[5], HIGH);
   digitalWrite(_pins[7], LOW);
+  hbridge::start();
+  delay(200);
+  hbridge::stop();
 }
 
 //Petit pas en avant

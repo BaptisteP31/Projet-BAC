@@ -39,7 +39,6 @@
 
 // RemoteXY select connection mode and include library 
 #ifndef REMOTEXY_MODE__HARDSERIAL
-// RemoteXY select connection mode and include library 
 #define REMOTEXY_MODE__HARDSERIAL
 
 #include <RemoteXY.h>
@@ -51,28 +50,33 @@
 
 // RemoteXY configurate  
 #pragma pack(push, 1)
-uint8_t RemoteXY_CONF[] =   // 100 bytes
-  { 255,8,0,0,0,93,0,16,31,0,1,0,12,26,12,12,2,31,0,1,
-  0,12,45,12,12,2,31,0,1,0,1,35,12,12,2,31,0,1,0,23,
-  35,12,12,2,31,0,1,0,81,26,12,12,2,31,118,105,116,101,115,115,
-  101,95,112,0,1,0,81,47,12,12,2,31,118,105,116,101,115,115,101,95,
-  109,0,1,0,36,3,12,12,2,31,0,1,0,51,3,12,12,2,31,0 };
+uint8_t RemoteXY_CONF[] =   // 133 bytes
+  { 255,10,0,0,0,126,0,16,31,0,1,0,12,26,12,12,28,31,226,134,
+  165,0,1,0,12,50,12,12,28,31,226,134,167,0,1,0,0,38,12,12,
+  28,31,226,134,164,0,1,0,24,38,12,12,28,31,226,134,166,0,1,0,
+  87,34,12,12,12,31,226,158,149,0,1,0,87,50,12,12,1,31,226,158,
+  150,0,1,1,35,2,15,8,28,31,83,116,97,114,116,0,1,1,51,2,
+  15,8,28,31,83,116,111,112,0,1,0,1,1,9,9,28,31,226,134,159,
+  0,1,0,1,11,9,9,28,31,226,134,161,0 };
   
 // this structure defines all the variables and events of your control interface 
 struct {
 
     // input variables
- uint8_t haut; // =1 if button pressed, else =0 
-  uint8_t bas; // =1 if button pressed, else =0 
-  uint8_t gauche; // =1 if button pressed, else =0 
-  uint8_t droite; // =1 if button pressed, else =0 
+  uint8_t step_foward; // =1 if button pressed, else =0 
+  uint8_t step_backward; // =1 if button pressed, else =0 
+  uint8_t left; // =1 if button pressed, else =0 
+  uint8_t right; // =1 if button pressed, else =0 
   uint8_t vitessep; // =1 if button pressed, else =0 
   uint8_t vitessem; // =1 if button pressed, else =0 
   uint8_t start; // =1 if button pressed, else =0 
   uint8_t stop; // =1 if button pressed, else =0 
+  uint8_t foward; // =1 if button pressed, else =0 
+  uint8_t backward; // =1 if button pressed, else =0 
 
     // other variable
   uint8_t connect_flag;  // =1 if wire connected, else =0 
+
 
 } RemoteXY;
 #pragma pack(pop)
