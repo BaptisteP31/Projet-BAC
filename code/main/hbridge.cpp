@@ -29,13 +29,14 @@ buzzerindicator _bz(23, 200);
 //constructeur de la classe
 hbridge::hbridge(int pins[], int speed) {
   _speed = speed;
+  _pinNumb = sizeof(pins)/sizeof(*pins);
 
-  for(int i; i < 8; i++) {
+  for(int i; i < _pinNumb; i++) {
 	  _pins[i]=pins[i];
   }
 
   //définition pins en OUTPUT
-  for(int i = 0; i < 8; i++)  {
+  for(int i = 0; i < _pinNumb; i++)  {
     pinMode(_pins[i], OUTPUT);
 
     //Les pins impairs sont mis à l'état haut
@@ -50,7 +51,7 @@ hbridge::hbridge(int pins[], int speed) {
   }
   
   //PWM de tous les pins pairs à speed
-  for(int i = 0; i < 8; i++) {
+  for(int i = 0; i < _pinNumb; i++) {
     if(i%2 == 0) {
       analogWrite(_pins[i], _speed);
     }
@@ -61,7 +62,7 @@ hbridge::hbridge(int pins[], int speed) {
 void hbridge::start() {
   
   //PWM de tous les pins pairs à speed
-  for(int i = 0; i < 8; i++) {
+  for(int i = 0; i < _pinNumb; i++) {
     if(i%2 == 0) {
       analogWrite(_pins[i], _speed);
     }
@@ -72,7 +73,7 @@ void hbridge::start() {
 void hbridge::stop() {
 
   //PWM de tous les pins pairs à speed
-   for(int i = 0; i < 8; i++) {
+   for(int i = 0; i < _pinNumb; i++) {
     if(i%2 == 0) {
       analogWrite(_pins[i], 0);
     }
@@ -114,7 +115,7 @@ void hbridge::vitessem() {
 
 //pont en H sens avant
 void hbridge::foward() {
-  for(int i = 0; i < 8; i++) {
+  for(int i = 0; i < _pinNumb; i++) {
     if(i%2 != 0) {
       digitalWrite(_pins[i], HIGH);
       }
@@ -123,7 +124,7 @@ void hbridge::foward() {
 
 //pont en H sens arrière
 void hbridge::backward() {
-  for(int i = 0; i < 8; i++) {
+  for(int i = 0; i < _pinNumb; i++) {
     if(i%2 != 0) {
       digitalWrite(_pins[i], HIGH);
       }
