@@ -45,8 +45,8 @@ hbridge::hbridge(int pins[], int speed) {
     }
     
     //liste des pins print dans la console
-    Serial.print("Pin : ");
-    Serial.println(_pins[i]);
+    //Serial.print("Pin : ");
+    //Serial.println(_pins[i]);
   
   }
   
@@ -87,8 +87,8 @@ void hbridge::vitessep() {
   //Si la vitesse est inférieure à 250
   if(_speed < 250) {
      _speed += 10;
-     Serial.print("Vitesse : ");
-     Serial.println(_speed);
+     //Serial.print("Vitesse : ");
+     //Serial.println(_speed);
      _bz.validated();
      
   } else {
@@ -105,8 +105,8 @@ void hbridge::vitessem() {
   //Si la vitesse est supérieure à 80 (sinon coupure moteur)
    if(_speed > 100) {
      _speed -= 10;
-     Serial.print("Vitesse : ");
-     Serial.println(_speed);
+     //Serial.print("Vitesse : ");
+     //Serial.println(_speed);
      _bz.validated();
 
   } else {
@@ -141,6 +141,10 @@ void hbridge::left() {
   digitalWrite(_pins[3], HIGH);
   digitalWrite(_pins[5], LOW);
   digitalWrite(_pins[7], HIGH);
+
+  delay(200);
+
+  hbridge::start();
 }
 
 //configuration moteurs pour tourner à droite

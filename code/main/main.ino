@@ -28,7 +28,7 @@ const int E1=3, M1=14, E2=10, M2=15, E3=11, M3=16, E4=9, M4=17;
 int pins[8] = {E1, M1, E2, M2, E3, M3, E4, M4};
 
 //Objets ledR, ledG de la classe ledindicator, delai de 200ms
-ledindicator ledR(20, 200); ledindicator ledG(21, 200);
+ledindicator ledR(13, 200); ledindicator ledG(21, 200);
 
 //Objet bz de la classe buzzerindicator
 buzzerindicator bz(23, 200);
@@ -40,7 +40,6 @@ hbridge hb(pins, 200);
 void setup() {
   Serial.begin(9600);
   ledG.still();
-
   RemoteXY_Init ();
 }
 
@@ -49,12 +48,13 @@ void loop() {
 
   RemoteXY_Handler ();
 
-    if (RemoteXY.haut) {
+    if (RemoteXY.haut==1) {
       
       //Petit pas en avant
       ledR.blink();
       bz.validated();
       hb.step_foward();
+      analogWrite(3, 100);
       Serial.println("En avant!");
       
     } else if (RemoteXY.bas) {
@@ -72,8 +72,6 @@ void loop() {
       hb.right();
       ledR.blink();
       Serial.println("Droite !");
-      delay(200);
-      hb.stop();
       
     } else if (RemoteXY.gauche) {
 
@@ -82,13 +80,8 @@ void loop() {
       ledR.blink();
       bz.validated();
       Serial.println("Gauche !");
-      delay(200);
-      hb.stop();
       
-    } else if (RemoteXY.droite) {
-      
-      
-    } else if (RemoteXY.switch_1) {
+    } else if (RemoteXY.start) {
 
       //Activation des moteurs
       ledR.blink();
@@ -96,7 +89,7 @@ void loop() {
       hb.start();
       Serial.println("Avancer!");
 
-    } else if (RemoteXY.switch_1 == false) {
+    } else if (RemoteXY.stop) {
 
       //arrêt des moteurs
       ledR.blink();
@@ -104,17 +97,19 @@ void loop() {
       hb.stop();
       Serial.println("Stop!");
       
-    } else if (RemoteXY.vitesse_m) {
+    } else if (RemoteXY.vitessem==1) {
 
       //Vitesse -10
-      hb.vitessep();
+      hb.vitessem();
+      Serial.println("Vitesse-");
       ledR.blink();
       
-    } else if (RemoteXY.vitesse_p) {
+    } else if (RemoteXY.vitessep) {
 
       //Vitesse +10
-      hb.vitessem();
+      hb.vitessep();
+      Serial.println("Vitesse+");
       ledR.blink();
       
-    }
+    } 
 }
