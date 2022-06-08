@@ -4,17 +4,17 @@ Projet commun entre PAQUERIAUD Baptiste, BOVIS Julien, GUERRIN Annabelle et CHEL
 
 ## Avancée du projet
 - **Code**
-  - 🟢 Déplacement → 100%
-  - 🔵 Détection de l'environnement → 50%
+  - 🔵 Déplacement → 50%
+  - 🔵 Détection de l'environnement → 0%
   - 🔴 Bras robotisé → 0%
 
 - **CAD**
-  - 🔴 Chassis → 0%
+  - 🟢 Chassis → 100%
   - 🔵 Fixation → 25%
   - 🟢 Bras robot
 
 - **Montage**
-  - 🔴 Chassis → 0%
+  - 🟢 Chassis → 100%
   - 🔴 Bras robot → 0%
 
 <br></br>
